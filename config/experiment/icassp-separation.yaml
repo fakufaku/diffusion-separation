@@ -1,0 +1,38 @@
+# @package _global_
+
+defaults:
+    - _self_
+    - override /datamodule: default
+    - override /model: default
+    - override /trainer: allgpus
+
+model:
+    init_hack: 5
+    init_hack_p: 0.1
+    mmnr_thresh_pit: -10.0  # threshold for using pit with train_source_order=pit
+    valid_max_sep_batches: 2
+    score_model:
+        backbone_args:
+            nf: 128
+        spec_abs_exponent: 0.5
+        spec_factor: 0.15
+    sde:
+        d_lambda: 2.0
+        sigma_max: 0.5
+        sigma_min: 0.05
+    optimizer:
+        lr: 0.0002
+
+trainer:
+    accumulate_grad_batches: 2
+
+datamodule:
+    train:
+        dl_opts:
+            batch_size: 6
+    val:
+        dl_opts:
+            batch_size: 5
+    test:
+        dl_opts:
+            batch_size: 5

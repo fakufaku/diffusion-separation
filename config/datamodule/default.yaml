@@ -1,0 +1,74 @@
+train:
+    dl_opts:
+        num_workers: 8
+        shuffle: true
+        batch_size: 16
+    dataset:
+        _target_: datasets.WSJ0_mix
+        path: ${path.datasets.wsj0_mix}
+        n_spkr: ${model.n_speakers}
+        fs: ${model.fs}
+        cut: max
+        split: train
+        max_len_s: 5
+        max_n_samples: null
+val:
+    dl_opts:
+        num_workers: 8
+        shuffle: false
+        batch_size: 16
+    dataset:
+        _target_: datasets.WSJ0_mix
+        path: ${path.datasets.wsj0_mix}
+        n_spkr: ${model.n_speakers}
+        fs: ${model.fs}
+        cut: max
+        split: val
+        max_len_s: null
+        max_n_samples: null
+test:
+    dl_opts:
+        num_workers: 8
+        shuffle: false
+        batch_size: 16
+    dataset:
+        _target_: datasets.WSJ0_mix
+        path: ${path.datasets.wsj0_mix}
+        n_spkr: ${model.n_speakers}
+        fs: ${model.fs}
+        cut: max
+        split: test
+        max_len_s: null
+        max_n_samples: null
+
+libri-clean:
+    dl_opts:
+        num_workers: 8
+        shuffle: false
+        batch_size: 16
+    dataset:
+        _target_: datasets.WSJ0_mix
+        path: data/LibriMix
+        n_spkr: ${model.n_speakers}
+        fs: ${model.fs}
+        cut: max
+        split: libri2mix_test
+        max_len_s: null
+        max_n_samples: null
+        mix_dir: mix_clean
+
+libri-noisy:
+    dl_opts:
+        num_workers: 8
+        shuffle: false
+        batch_size: 16
+    dataset:
+        _target_: datasets.WSJ0_mix
+        path: data/LibriMix
+        n_spkr: ${model.n_speakers}
+        fs: ${model.fs}
+        cut: max
+        split: libri2mix_test
+        max_len_s: null
+        max_n_samples: null
+        mix_dir: mix_both

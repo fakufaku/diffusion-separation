@@ -1,0 +1,27 @@
+train:
+    dl_opts:
+        num_workers: 4
+        shuffle: true
+        batch_size: 4
+    dataset:
+        _target_: datasets.NoisyDataset
+        audio_path: ${path.datasets.valentini}
+        fs: ${model.fs}
+        audio_len: 3
+        augmentation: true
+        split: train
+val:
+    dl_opts:
+        num_workers: 4
+        shuffle: false
+        batch_size: 8
+test:
+    dl_opts:
+        num_workers: 4
+        shuffle: false
+        batch_size: 8
+    dataset:
+        _target_: datasets.NoisyDataset
+        audio_path: ${path.datasets.valentini}
+        fs: ${model.fs}
+        split: test

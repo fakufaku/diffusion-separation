@@ -1,0 +1,68 @@
+defaults:
+    - _self_
+
+n_speakers: 2
+fs: 16000
+t_eps: 0.03
+t_rev_init: 0.03
+ema_decay: 0.999
+train_source_order: None
+valid_max_sep_batches: 1
+time_sampling_strategy: uniform
+init_hack: 4
+mmnr_thresh_pit: -10.0  # threshold for using pit with train_source_order=pit
+
+score_model:
+    _target_: models.score_models.ScoreModelNCSNpp
+    num_sources: ${model.n_speakers}
+    stft_args:
+        n_fft: 510
+        hop_length: 128
+        center: True
+        pad_mode: "constant"
+    backbone_args:
+        _target_: models.ncsnpp.NCSNpp
+        nf: 128
+    transform: exponent
+    spec_abs_exponent: 0.5
+    spec_factor: 0.15
+    spec_trans_learnable: false
+
+sde:
+    _target_: sdes.sdes.PriorMixSDE
+    ndim: ${model.n_speakers}
+    d_lambda: 2.0
+    sigma_min: 0.05
+    sigma_max: 0.5
+    N: 30
+
+sampler:
+    N: 30
+    snr: 0.5
+    corrector_steps: 1
+
+loss:
+    _target_: torch.nn.MSELoss
+
+main_val_loss: val/si_sdr
+main_val_loss_mode: max
+val_losses:
+    val/si_sdr:
+        _target_: models.losses.SISDRLoss
+        zero_mean: true
+        clamp_db: 30
+        reduction: mean
+        sign_flip: true
+    val/pesq:
+        _target_: models.losses.PESQ
+        mode: wb
+        fs: ${model.fs}
+
+optimizer:
+    _target_: torch.optim.Adam
+    lr: 0.0001
+    weight_decay: 0.0
+scheduler: null
+grad_clipper:
+    _target_: utils.FixedClipper
+    max_norm: 5.0

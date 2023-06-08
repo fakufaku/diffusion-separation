@@ -1,0 +1,11 @@
+_target_: pytorch_lightning.Trainer
+accumulate_grad_batches: 2
+min_epochs: 1
+max_epochs: 1000
+deterministic: true
+accelerator: gpu
+devices: 1
+check_val_every_n_epoch: 1
+default_root_dir: .
+profiler: false
+resume_from_checkpoint: null

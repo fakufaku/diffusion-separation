@@ -1,0 +1,12 @@
+# @package _global_
+
+defaults:
+    - _self_
+    - override /datamodule: nr
+    - override /model: nr
+    - override /trainer: default
+
+name: enhancement  # experiment name
+
+trainer:
+    accumulate_grad_batches: 4

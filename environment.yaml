@@ -1,0 +1,37 @@
+name: diff-sep
+channels:
+  - pytorch
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pytorch=1.11.0
+  - torchvision
+  - torchaudio
+  - tensorboard
+  - scikit-learn
+  - joblib
+  - ninja
+  - numpy
+  - scipy>=1.5.0
+  - matplotlib
+  - seaborn
+  - pandas
+  - ipython
+  - pytest
+  - ffmpeg
+  - sox
+  - pip
+  - pip:
+      - pytorch-lightning>=1.0.0
+      - pyroomacoustics
+      - PyYAML
+      - rich
+      - tabulate
+      - librosa
+      - hydra-core
+      - fast-bss-eval
+      - hydra-joblib-launcher
+      - asteroid
+      - asteroid-filterbanks
+      - torch_ema
+      - onnxruntime
