@@ -21,7 +21,7 @@ work on the VoiceBank-DEMAND dataset.
 Show Me How to Separate Wav Files!
 ----------------------------------
 
-We got you covered. Just run the following command.
+We got you covered. Just run the following command (after setting up the environment as described under Training).
 ```bash
 python separate.py path/to/wavfiles/folder path/to/output/folder
 ```
