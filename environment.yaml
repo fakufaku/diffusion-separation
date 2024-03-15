@@ -35,3 +35,4 @@ dependencies:
       - asteroid-filterbanks
       - torch_ema
       - onnxruntime
+      - huggingface_hub

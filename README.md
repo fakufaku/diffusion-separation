@@ -18,6 +18,19 @@ demonstrate the potential of the method. Furthermore, the method is also
 suitable for speech enhancement and shows performance competitive with prior
 work on the VoiceBank-DEMAND dataset.
 
+Show Me How to Separate Wav Files!
+----------------------------------
+
+We got you covered. Just run the following command.
+```bash
+python separate.py path/to/wavfiles/folder path/to/output/folder
+```
+where `path/to/wavfiles/folder` points to a folder containing wavfiles. The
+input files should be sampled at `8 kHz` for the default model. Two speakers
+are separated and stored in `path/to/output/folder/s1` and
+`path/to/output/folder/s2`, respectively.
+The model weights are stored on [huggingface](https://huggingface.co/fakufaku/diffsep).
+
 
 Configuration
 -------------
